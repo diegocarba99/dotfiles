@@ -1,0 +1,2 @@
+#!/bin/bash
+/bin/cat ~/.config/i3/scripts/target.dat

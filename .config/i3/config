@@ -1,0 +1,299 @@
+#  i3wm config file
+# Autor:
+#       Diego Carballeda Martinez
+#       diegocarballedamartinez@gmail.com
+#       https://github.com/diegocarba99
+
+
+# -----[Basic config]---
+
+# Mod key setting
+  set $mod Mod4
+
+# Font for window titles
+  font pango:System San Francisco Display 2
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# -----[Key bindings]---
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+q kill
+
+# ROFI menu launcher configuration
+  set $rofi_theme "/home/diej/.config/rofi/config.rasi"
+  bindsym $mod+d exec bash -c "rofi -show drun -config $rofi_theme -show-icons"
+#bindsym $mod+Shift+d exec --no-startup-id powermenu_t2
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal and vertical orientation
+  bindsym $mod+h split h
+  bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+
+bindsym $mod+f exec firefox
+bindsym $mod+n exec thunar 
+
+# Change windows to different screens
+  bindsym $mod+Shift+m move workspace to output left
+  bindsym $mod+m move workspace to output right
+  
+# System configuration menu
+# bindsym $mod+Shift+c exec cinnamon-settings
+# bindsym $mod+c exec gnome-control-center
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Screenshots
+# bindsym $mod+Print exec scrot '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f ~/Imágenes/screenshots/'
+  bindsym $mod+p exec flameshot gui
+
+# Bluetooth settings
+  bindsym $mod+b exec blueman-manager
+  
+# reload the configuration file
+#bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+#
+bindsym $mod+Shift+l exec "xrandr --output HDMI-1-1 --primary --mode 1920x1080 --output eDP-1 --mode 1920x1080 --right-of HDMI-1-1"
+bindsym $mod+Shift+o exec "xrandr --output HDMI-1-1 --off"
+
+
+
+
+
+# -----[Workspaces]---
+
+# Workspaces
+  set $ws1 "1 "
+  set $ws2 "2 "
+  set $ws3 "3 "
+  set $ws4 "4 "
+  set $ws5 "5 "
+  set $ws6 "6 "
+  set $ws7 "7 "
+  set $ws8 "8 "
+  set $ws9 "9 "
+  set $ws10 "10 "
+  set $ws11 ""
+  set $ws12 "‎"
+#  set $ws11 ""
+#  set $ws12 "^_^"
+
+# Switch to workspace
+  bindsym $mod+1 workspace $ws1
+  bindsym $mod+2 workspace $ws2
+  bindsym $mod+3 workspace $ws3
+  bindsym $mod+4 workspace $ws4
+  bindsym $mod+5 workspace $ws5
+  bindsym $mod+6 workspace $ws6
+  bindsym $mod+7 workspace $ws7
+  bindsym $mod+8 workspace $ws8
+  bindsym $mod+9 workspace $ws9
+  bindsym $mod+0 workspace $ws10
+  bindsym $mod+apostrophe workspace $ws11
+  bindsym $mod+exclamdown workspace $ws12
+
+
+# Move container to workspace
+  bindsym $mod+Shift+1 move container to workspace $ws1
+  bindsym $mod+Shift+2 move container to workspace $ws2
+  bindsym $mod+Shift+3 move container to workspace $ws3
+  bindsym $mod+Shift+4 move container to workspace $ws4
+  bindsym $mod+Shift+5 move container to workspace $ws5
+  bindsym $mod+Shift+6 move container to workspace $ws6
+  bindsym $mod+Shift+7 move container to workspace $ws7
+  bindsym $mod+Shift+8 move container to workspace $ws8
+  bindsym $mod+Shift+9 move container to workspace $ws9
+  bindsym $mod+Shift+0 move container to workspace $ws10
+  bindsym $mod+Shift+apostrophe move container to workspace $ws11
+  bindsym $mod+Shift+exclamdown move container to workspace $ws12
+
+
+# -----[Resizing]---
+
+mode "resize" {
+        
+        # Arrow bindings
+        bindsym Left  resize shrink width  5 px or 5 ppt
+        bindsym Up    resize shrink height 5 px or 5 ppt
+        bindsym Down  resize grow   height 5 px or 5 ppt
+        bindsym Right resize grow   width  5 px or 5 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# i3bar with i3blocks
+bar {
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        i3bar_command i3bar -t
+        position top
+        height 20
+        font pango:System San Francisco Bold Display 8
+        colors {
+            statusline #ffffff
+            background #23252a
+            
+            #                   border   bg       text
+            focused_workspace   #8b7cdb  #8b7cdb  #000000
+            inactive_workspace  #3b3c40  #3b3c40  #FFFFFF
+        }
+}
+
+# -----[Hardware controls]---
+# Sreen brightness controls
+  bindsym XF86MonBrightnessUp   exec ~/.config/i3/scripts/brightness.sh +   
+  bindsym XF86MonBrightnessDown exec ~/.config/i3/scripts/brightness.sh - 
+
+
+
+# feh - Wallpaper Setter
+exec_always --no-startup-id feh --bg-fill "/home/diej/Pictures/wallpapers/pic9.jpg"
+
+# compton - Compositing Manager for Shadows and Opacity
+#exec_always --no-startup-id compton -b --config ~/.config/compton/compton.conf
+
+# VM Clipboard Fix
+#exec_always --no-startup-id ~/.config/i3/clipboard_fix.sh
+
+# Resize Bindings
+bindsym $mod+Ctrl+Shift+Right resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+Shift+Up resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+Shift+Down resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
+
+
+
+# -----[i3-gaps]---
+
+# i3-gaps
+for_window [class="^.*"] border pixel 2
+gaps inner 8
+gaps outer 1
+smart_gaps on
+
+smart_borders on
+smart_borders no_gaps
+#border_radius 5
+
+  hide_edge_borders smart
+  default_border pixel 1
+  default_floating_border pixel 1
+  new_window 1pixel  
+  
+  
+  # Gap mode
+  set $mode_gaps Gaps: (o) outer, (i) inner
+  set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+  set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+  bindsym $mod+Shift+g mode "$mode_gaps"
+  
+  mode "$mode_gaps" {
+          bindsym o      mode "$mode_gaps_outer"
+          bindsym i      mode "$mode_gaps_inner"
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+  }
+
+  mode "$mode_gaps_inner" {
+          bindsym plus  gaps inner current plus 5
+          bindsym minus gaps inner current minus 5
+          bindsym 0     gaps inner current set 0
+  
+          bindsym Shift+plus  gaps inner all plus 5
+          bindsym Shift+minus gaps inner all minus 5
+          bindsym Shift+0     gaps inner all set 0
+  
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+  }
+  
+  mode "$mode_gaps_outer" {
+          bindsym plus  gaps outer current plus 5
+          bindsym minus gaps outer current minus 5
+          bindsym 0     gaps outer current set 0
+  
+          bindsym Shift+plus  gaps outer all plus 5
+          bindsym Shift+minus gaps outer all minus 5
+          bindsym Shift+0     gaps outer all set 0
+
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+  }
+  
+  
+# Color setting
+  set $bg-color		    #2ca053
+  set $bg-color-light	    #b3aae6
+  set $inactive-bg-color    #313131
+  set $inactive-bg-color-2  #525252
+  set $text-color           #ffffff
+  set $text-color-dark      #000000
+  set $inactive-text-color  #696969
+  set $urgent-bg-color      #E53935
+  
+# Window colors            border              background          text                 
+  client.focused           $bg-color-light     $bg-color-light     $text-color-dark
+  client.unfocused         $inactive-bg-color  $inactive-bg-color  $inactive-text-color
+  client.focused_inactive  $inactive-bg-color  $inactive-bg-color  $inactive-text-color
+  client.urgent            $urgent-bg-color    $urgent-bg-color    $text-color-dark
