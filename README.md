@@ -13,8 +13,7 @@ To install all the tooling and apply the default config, execute the following c
 ```sh
 git clone https://github.com/diegocarba99/dotfiles.git
 cd dotfiles/
-chmod 777 autoricer.sh
-./autoricer.sh
+python3 ./autoricer.py
 ```
 
 After executing the script, if no error appeared, restart your session.
@@ -38,8 +37,6 @@ After executing the script, if no error appeared, restart your session.
 - Focus right - `mod + Right`
 - Focus up - `mod + up`
 - Focus down - `mod + down`
-
-
 
 ## Applications
 - Terminal - `mod + Return`
