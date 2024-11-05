@@ -4,7 +4,23 @@ import os
 
 
 PACKAGES = ["i3", "rofi", "i3blocks", "zsh", "git", "fzf", "zoxide", "flameshot"]
-OFFENSIVE_TOOLS = ["i3", "rofi", "i3blocks", "zsh"]
+OFFENSIVE_TOOLS = [
+    "kali-tools-database",
+    "kali-tools-exploitation",
+    "kali-tools-fuzzing",
+    "kali-tools-forensics",
+    "kali-tools-hardware",
+    "kali-tools-identify",
+    "kali-tools-information-gathering",
+    "kali-tools-passwords",
+    "kali-tools-post-exploitation",
+    "kali-tools-respond",
+    "kali-tools-reverse-engineering",
+    "kali-tools-rfid",
+    "kali-tools-vulnerability",
+    "kali-tools-web",
+    "kali-tools-windows-resources",
+]
 
 OS_UBUNTU = "ubuntu"
 OS_DEBIAN = "debian"
@@ -117,6 +133,10 @@ def install_nerd_fonts():
 
 def install_offensive_tools():
     try:
+        subprocess.check_call(['sudo', 'sh', '-c', 'echo "deb http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list.d/kali.list'])
+        subprocess.check_call(['wget', '-q', '-O', '-', 'https://archive.kali.org/archive-key.asc'], stdout=subprocess.PIPE)
+        subprocess.check_call(['sudo', 'apt-key', 'add', '-'], stdin=subprocess.PIPE)
+        update_system()
         subprocess.check_call(["sudo", "apt-get", "install", "-y"] + OFFENSIVE_TOOLS)
         success("Offensive tools installed successfully.")
     except subprocess.CalledProcessError as e:
@@ -160,7 +180,7 @@ if __name__ == "__main__":
     copy_config_files()
 
     if os_type != OS_KALI:
-        choice = get_input("Do you want to install the suite of offensive tools? (y/n)")
+        choice = get_input("Do you want to install the suite of offensive tools? This will take a while (y/n)")
         if choice.lower() == "y":
             info("installing offensive tools" + ", ".join(OFFENSIVE_TOOLS))
             install_offensive_tools()
