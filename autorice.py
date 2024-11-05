@@ -137,7 +137,6 @@ def get_input(msg: str):
     return input(f"\033[1;35m[i] {msg} \033[0m")
 
 
-
 if __name__ == "__main__":
     
     info("starting installation")
