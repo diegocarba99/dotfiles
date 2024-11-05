@@ -1,8 +1,4 @@
 # dotfiles
-
-
-# Overview
-
 This tool automatically configures your machine to my liking using the tiling window manager `i3` with a set of predefined settings.
 
 
