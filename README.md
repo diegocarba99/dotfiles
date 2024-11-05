@@ -1,6 +1,8 @@
 # dotfiles
 This tool automatically configures your machine to my liking using the tiling window manager `i3` with a set of predefined settings.
 
+[Great inspo for dotfiles](https://github.com/webpro/awesome-dotfiles?tab=readme-ov-file)
+
 
 # Usage
 
