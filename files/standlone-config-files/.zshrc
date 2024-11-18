@@ -46,6 +46,7 @@ alias gpull='git pull origin $(git symbolic-ref --short HEAD)'
 alias gdel='git branch -d'
 alias gdiff-comm=' git log --branches --not --remotes'
 alias tmuxcheat='bat $HOME/.tmux.cheatsheet'
+alias fixkeys='setxkbmap -layout gb -variant mac && xmodmap -e "keycode 134 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift"'
 
 
 # Set the directory we want to store zinit and plugins
