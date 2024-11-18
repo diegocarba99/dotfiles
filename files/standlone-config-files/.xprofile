@@ -1,0 +1,3 @@
+xmodmap -e "keycode 49 = numbersign"
+setxkbmap -layout gb -variant mac
+xmodmap -e "keycode 134 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift"
